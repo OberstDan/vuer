@@ -1,0 +1,7 @@
+{
+  "common": {
+    "cpu": "CPU",
+    "storage": "Festplattenkapazität",
+    "memory": "Speicher"
+  }
+}
