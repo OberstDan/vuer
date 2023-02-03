@@ -39,32 +39,12 @@
 
 <script setup>
 import MetricsCarousel from "./metrics/MetricsCarousel.vue";
-
-const metrics = [
-  {
-    server: "Server 1",
-    cpu: "53.5",
-    memory: "25",
-    disk: "75",
-  },
-  {
-    server: "Server 2",
-    cpu: "64",
-    memory: "73",
-    disk: "25",
-  },
-  {
-    server: "Server 3",
-    cpu: "12",
-    memory: "5",
-    disk: "99",
-  },
-];
+import { metrics } from "@/assets/metrics.json"
 
 const drawer = null;
 const pageTitle = "Vuer";
 
 function addItem() {
-  alert("hi");
+  alert(JSON.stringify(metrics));
 }
 </script>
