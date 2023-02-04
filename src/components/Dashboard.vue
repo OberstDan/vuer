@@ -48,7 +48,9 @@ const store = useMetricStore();
 const user = useUserStore();
 
 onBeforeMount(async () => {
-  await store.load();
+  if (!store.metrics) {
+    await store.load();
+  }
 });
 
 function addItem() {

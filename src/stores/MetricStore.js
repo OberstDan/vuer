@@ -6,7 +6,7 @@ export const useMetricStore = defineStore("metric", () => {
   const metrics = ref();
 
   async function load() {
-    metrics.value = data.metrics
+    metrics.value = data.metrics;
   }
 
   return {
