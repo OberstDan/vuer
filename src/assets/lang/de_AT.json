@@ -1,5 +1,6 @@
 {
   "common": {
+    "appTitle": "Vuer",
     "cpu": "CPU",
     "storage": "Festplattenkapazität",
     "memory": "Speicher"
