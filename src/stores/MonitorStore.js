@@ -1,10 +1,16 @@
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { ref } from "vue";
+import data from "@/assets/monitors.json";
 
 export const useMonitorStore = defineStore("monitor", () => {
-  const monitors = ref([]);
+  const monitors = ref();
+
+  async function load() {
+    monitors.value = data.monitors;
+  }
 
   return {
     monitors,
+    load,
   };
 });

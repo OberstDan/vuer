@@ -1,0 +1,40 @@
+{
+  "monitors": [
+    {
+      "title": "Verbindungen",
+      "value": "5"
+    },
+    {
+      "title": "Abbrüche",
+      "value": "10"
+    },
+    {
+      "title": "Korrupte Datensätze",
+      "value": "35"
+    },
+    {
+      "title": "Fehler / Minute",
+      "value": "20"
+    },
+    {
+      "title": "Benutzeranmeldungen",
+      "value": "2"
+    },
+    {
+      "title": "Datensätze gesamt",
+      "value": "60"
+    },
+    {
+      "title": "Erfolgreiche Testfälle",
+      "value": "2"
+    },
+    {
+      "title": "Neue Benutzer",
+      "value": "4"
+    },
+    {
+      "title": "Lorem ipsum",
+      "value": "8"
+    }
+  ]
+}
