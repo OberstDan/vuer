@@ -5,7 +5,7 @@
 
       <v-toolbar-title>{{ userStore.i18n.common.appTitle }}</v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click.stop="showAddMetricDialog = true">
+      <v-btn icon @click.stop="metricDialog = true">
         <v-icon> mdi-plus </v-icon>
       </v-btn>
       <v-btn icon @click="showStore">
@@ -39,7 +39,7 @@
         </v-row>
       </v-container>
     </v-main>
-    <AddMetricDialog v-model="showAddMetricDialog"/>
+    <AddMetricDialog v-model="metricDialog" />
   </v-app>
 </template>
 
@@ -50,14 +50,12 @@ import AddMetricDialog from "./metrics/AddMetricDialog.vue";
 import { useMetricStore } from "@/stores/MetricStore.js";
 import { useUserStore } from "@/stores/UserStore.js";
 import { useMonitorStore } from "@/stores/MonitorStore.js";
-import { useDialogStore } from "@/stores/DialogStore.js";
-const drawer = ref(false);
 const metricStore = useMetricStore();
 const monitorStore = useMonitorStore();
 const userStore = useUserStore();
-const dialogStore = useDialogStore();
 
-const showAddMetricDialog = ref(false);
+const drawer = ref(false);
+const metricDialog = ref(false);
 
 onBeforeMount(async () => {
   if (!metricStore.metrics) {
@@ -65,13 +63,8 @@ onBeforeMount(async () => {
   }
 });
 
-function addItem() {
-  // monitorStore.monitors.push({ title: "test2" });
-}
-
 function showStore() {
-  // alert(JSON.stringify(monitorStore.monitors));
-  alert(showAddMetricDialog.value);
+  alert(JSON.stringify(monitorStore.monitors));
 }
 </script>
 <style>
