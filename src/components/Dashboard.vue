@@ -3,10 +3,13 @@
     <v-app-bar color="primary" density="compact" rounded flat>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>{{ user.i18n.common.appTitle }}</v-toolbar-title>
+      <v-toolbar-title>{{ userStore.i18n.common.appTitle }}</v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click="addItem">
+      <v-btn icon @click.stop="dialogStore.openDialog('addMetricDialog')">
         <v-icon> mdi-plus </v-icon>
+      </v-btn>
+      <v-btn icon @click="showStore">
+        <v-icon> mdi-apps </v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -18,42 +21,62 @@
       <v-container fluid>
         <v-row dense>
           <v-col class="mt-2" cols="12">
-            <MetricsCarousel :metrics="store.metrics" />
+            <MetricsCarousel :metrics="metricStore.metrics" />
           </v-col>
         </v-row>
         <v-row>
-          <template v-for="n in 3" :key="n">
-            <v-col class="mt-2" cols="12">
-              <strong>Category {{ n }}</strong>
-            </v-col>
+          <template v-for="n in monitorStore.monitors.length" :key="n">
+            <v-col class="mt-2 ml-0 mr-0" cols="2">
+              <div class="d-flex justify-left align-center mt-2">
+                <v-card-subtitle class="keep-left"
+                  >Category {{ n }}</v-card-subtitle
+                >
+              </div>
 
-            <v-col v-for="j in 3" :key="`${n}${j}`" cols="6" md="4">
-              <v-sheet height="50"></v-sheet>
+              <v-sheet height="150"></v-sheet>
             </v-col>
           </template>
         </v-row>
       </v-container>
     </v-main>
+    <AddMetricDialog />
   </v-app>
 </template>
 
 <script setup>
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 import MetricsCarousel from "@/components/metrics/MetricsCarousel.vue";
+import AddMetricDialog from "./metrics/AddMetricDialog.vue";
 import { useMetricStore } from "@/stores/MetricStore.js";
 import { useUserStore } from "@/stores/UserStore.js";
+import { useMonitorStore } from "@/stores/MonitorStore.js";
+import { useDialogStore } from "@/stores/DialogStore.js";
+const drawer = ref(false);
+const metricStore = useMetricStore();
+const monitorStore = useMonitorStore();
+const userStore = useUserStore();
+const dialogStore = useDialogStore();
 
-const drawer = false;
-const store = useMetricStore();
-const user = useUserStore();
+const showAddMetricDialog = ref(false);
 
 onBeforeMount(async () => {
-  if (!store.metrics) {
-    await store.load();
+  if (!metricStore.metrics) {
+    await metricStore.load();
   }
 });
 
 function addItem() {
-  alert(JSON.stringify(store.metrics));
+  // monitorStore.monitors.push({ title: "test2" });
+}
+
+function showStore() {
+  // alert(JSON.stringify(monitorStore.monitors));
+  alert(showAddMetricDialog.value);
 }
 </script>
+<style>
+.keep-left {
+  padding-left: 0px;
+  margin-left: 0px;
+}
+</style>
