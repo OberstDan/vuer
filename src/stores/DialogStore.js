@@ -4,8 +4,8 @@ import { computed, ref } from "vue";
 export const useDialogStore = defineStore("dialog", () => {
   const dialogs = ref([]);
 
-  const addMetricDialogValue = computed(() => {
-    return dialogs.value.find((dialog) => dialog == "addMetricDialog");
+  const showExampleDialog = computed(() => {
+    return dialogs.value.find((dialog) => dialog == "showExampleDialog");
   });
 
   function openDialog(name) {
@@ -13,12 +13,12 @@ export const useDialogStore = defineStore("dialog", () => {
   }
 
   function closeDialog(name) {
-    const i = dialogs.value.lastIndexOf(name)
-      if (i > -1) dialogs.value.splice(i, 1)
+    const i = dialogs.value.lastIndexOf(name);
+    if (i > -1) dialogs.value.splice(i, 1);
   }
 
   return {
-    addMetricDialogValue,
+    showExampleDialog,
     openDialog,
     closeDialog,
   };

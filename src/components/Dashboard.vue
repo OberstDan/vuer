@@ -5,7 +5,7 @@
 
       <v-toolbar-title>{{ userStore.i18n.common.appTitle }}</v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click.stop="dialogStore.openDialog('addMetricDialog')">
+      <v-btn icon @click.stop="showAddMetricDialog = true">
         <v-icon> mdi-plus </v-icon>
       </v-btn>
       <v-btn icon @click="showStore">
@@ -39,7 +39,7 @@
         </v-row>
       </v-container>
     </v-main>
-    <AddMetricDialog />
+    <AddMetricDialog v-model="showAddMetricDialog"/>
   </v-app>
 </template>
 

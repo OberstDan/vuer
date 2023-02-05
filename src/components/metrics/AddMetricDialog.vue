@@ -1,6 +1,7 @@
 <template>
   <v-row justify="center">
-    <v-dialog :model-value="dialogStore.addMetricDialogValue" persistent>
+    <!-- <v-dialog :model-value="dialogStore.addMetricDialogValue" persistent> -->
+    <v-dialog :model-value="modelValue" @update:modelValue="$emit('update:modelValue')">
       <v-card>
         <v-card-title>
           <span class="text-h5">User Profile</span>
@@ -8,7 +9,7 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" md="4"> 
                 <v-text-field label="Legal first name*" required></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="4">
@@ -65,10 +66,10 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue-darken-1" variant="text" @click="dialogStore.closeDialog('addMetricDialog')">
+          <v-btn color="blue-darken-1" variant="text" @click="$emit('update:modelValue')">
             Close
           </v-btn>
-          <v-btn color="blue-darken-1" variant="text" @click="dialogStore.closeDialog('addMetricDialog')">
+          <v-btn color="blue-darken-1" variant="text" @click="$emit('update:modelValue')">
             Save
           </v-btn>
         </v-card-actions>
@@ -77,6 +78,6 @@
   </v-row>
 </template>
 <script setup>
-import { useDialogStore } from "@/stores/DialogStore.js";
-const dialogStore = useDialogStore();
+defineProps(['modelValue'])
+defineEmits(['update:modelValue'])
 </script>
