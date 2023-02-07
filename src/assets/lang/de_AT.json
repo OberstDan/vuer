@@ -3,6 +3,14 @@
     "appTitle": "Vuer",
     "cpu": "CPU",
     "storage": "Festplattenkapazität",
-    "memory": "Speicher"
+    "memory": "Speicher",
+    "addMonitoring": "Neues Monitoring hinzufügen",
+    "title": "Bezeichnung",
+    "value": "Wert",
+    "close": "Schließen",
+    "add": "Hinzufügen"
+  },
+  "hint": {
+    "monitorValueRange": "Testhalber bitte ein Zahl von 1 bis 100 hinterlegen"
   }
 }

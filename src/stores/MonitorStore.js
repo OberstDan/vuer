@@ -9,8 +9,18 @@ export const useMonitorStore = defineStore("monitor", () => {
     monitors.value = data.monitors;
   }
 
+  function add(element) {
+    monitors.value.push(element);
+  }
+
+  function remove(element) {
+    monitors.value = monitors.value.filter((e) => e.title == element.title);
+  }
+
   return {
     monitors,
     load,
+    add,
+    remove,
   };
 });

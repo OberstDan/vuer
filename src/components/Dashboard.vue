@@ -25,23 +25,14 @@
           </v-col>
         </v-row>
         <v-row>
-          <template v-for="n in monitorStore.monitors" :key="n">
-            <v-col class="mt-2 ml-0 mr-0" cols="2">
-              <div class="d-flex justify-left align-center mt-2">
-                <v-card-subtitle class="keep-left">
-                  {{ n.title }}
-                </v-card-subtitle>
-              </div>
-
-              <v-sheet height="150" :color="monitorColor(n.value)">
-                <div class="d-flex fill-height justify-center align-center">
-                  <div :class="['text-h2', 'text--white']">
-                    {{ n.value }}
-                  </div>
-                </div>
-              </v-sheet>
-            </v-col>
-          </template>
+          <v-col
+            class="mt-2 ml-0 mr-0"
+            cols="2"
+            v-for="n in monitorStore.monitors"
+            :key="n"
+          >
+            <MonitorBox :monitor="n" />
+          </v-col>
         </v-row>
       </v-container>
     </v-main>
@@ -56,6 +47,7 @@ import { useUserStore } from "@/stores/UserStore.js";
 import { useMonitorStore } from "@/stores/MonitorStore.js";
 import MetricsCarousel from "@/components/metrics/MetricsCarousel.vue";
 import MonitorDialog from "@/components/metrics/MonitorDialog.vue";
+import MonitorBox from "@/components/metrics/MonitorBox.vue";
 
 const metricStore = useMetricStore();
 const monitorStore = useMonitorStore();
@@ -77,21 +69,4 @@ onBeforeMount(async () => {
 function showStore() {
   alert(JSON.stringify(monitorStore.monitors));
 }
-
-function monitorColor(value) {
-  if (value >= 30) {
-    return "error";
-  }
-  if (value >= 10) {
-    return "warning";
-  }
-  return "success";
-}
 </script>
-
-<style>
-.keep-left {
-  padding-left: 0px;
-  margin-left: 0px;
-}
-</style>
